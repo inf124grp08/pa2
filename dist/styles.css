@@ -1,0 +1,9 @@
+.nav-bar 
+{
+  display: flex;
+  
+}
+
+.cat-nav-item.active {
+  font-weight: bold;
+}

@@ -32,7 +32,6 @@ const collectionKey = args.k;
 
 const write = (filename, content) => {
   let pathname = path.join(dir, filename);
-  console.log('writing', pathname);
   fs.writeFileSync(pathname, content);
 }
 
@@ -42,8 +41,9 @@ if ( mode === 'obj' )
 {
   const data = JSON.parse(fs.readFileSync(dataFile));
   const src = fs.readFileSync(tmplFile).toString();
-  let filename = `${name}.html`;
-  let content = ejs.render(src, data);
+  const filename = `${name}.html`;
+  const params = Object.assign({ filename: tmplFile }, data);
+  const content = ejs.render(src, params);
   write(filename, content);
   process.exit(0);
 }
@@ -53,9 +53,9 @@ else if ( mode === 'col' )
   const src = fs.readFileSync(tmplFile).toString();
 
   const generate = (key, item) => {
-    let filename = `${name}-${key}.html`;
-    let itemData = Object.assign({ key }, data, item);
-    let content = ejs.render(src, itemData);
+    const filename = `${name}-${key}.html`;
+    const params = Object.assign({ filename: tmplFile, key }, data, item);
+    const content = ejs.render(src, params);
     write(filename, content);
   }
 

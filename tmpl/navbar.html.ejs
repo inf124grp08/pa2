@@ -1,0 +1,11 @@
+<div class="nav-bar">
+  <ul>
+    <% Object.keys(categories).forEach(key => { %>
+      <% var cat = categories[key]; %>
+      <% var klass = this.catKey === key ? 'active' : ''; %>
+      <li class="cat-nav-item <%= klass %>">
+      <a href="category-<%= key %>.html"><%= cat.label %></a>
+      </li>
+    <% }); %>
+  </ul>
+</div>

@@ -1,4 +1,13 @@
-Category label: <%= categories[category].description  %>
-Product name: <%= brand %>
-Product name: <%= description %>
-Product price: <%= price %>
+<!DOCTYPE html>
+<html>
+  <% include head.html.ejs %>
+	<body>
+    <% this.catKey = category %>
+    <% this.cat = categories[this.catKey]; %>
+    <% include navbar.html.ejs %>
+    <img style="max-width: 200px;" class="product-image" src="<%= image %>"/>
+    <p class="brand"><%= brand %></p>
+    <p class="description"><%= description %></p>
+    <p class="price"><%= price %></p>
+	</body>
+</html>
