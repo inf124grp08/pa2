@@ -1,9 +1,13 @@
 <div class="nav-bar">
   <ul>
+    <% var homeKlass = filename === "tmpl/index.html.ejs" ? 'active' : ''; %>
+    <li class="cat-nav-item <%= homeKlass %>">
+    <a href="index.html">Home</a>
+    </li>
     <% Object.keys(categories).forEach(key => { %>
       <% var cat = categories[key]; %>
-      <% var klass = this.catKey === key ? 'active' : ''; %>
-      <li class="cat-nav-item <%= klass %>">
+      <% var catKlass = this.catKey === key ? 'active' : ''; %>
+      <li class="cat-nav-item <%= catKlass %>">
       <a href="category-<%= key %>.html"><%= cat.label %></a>
       </li>
     <% }); %>
