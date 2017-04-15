@@ -8,15 +8,9 @@
 	<body>
     <div class="nav-bar">
       <ul>
-        <li>Shoes</li>
-        <li>Harnesses</li>
-        <li>Ropes</li>
-        <li>Gear</li>
-      </ul>
-    </div>
-      <ul>
-        <% products.forEach(product => { %>
-          <li><%= product.name %></li>
+        <% Object.keys(categories).forEach(key => { %>
+          <% var cat = categories[key]; %>
+          <li><a href="category-<%= key %>.html"><%= cat.label %></a></li>
         <% }); %>
       </ul>
 	</body>

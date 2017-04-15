@@ -1,2 +1,4 @@
 node_modules
-*.html
+dist/index.html
+dist/product-*.html
+dist/category-*.html

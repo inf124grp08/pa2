@@ -1,9 +1,12 @@
 all: clean build
 
 clean:
-	rm -f product-*.html
+	rm -f dist/index.html
+	rm -f dist/product-*.html
+	rm -f dist/category-*.html
 
 build:
-	./scripts/tmpl.js -t index.html.ejs --object data.json
-	./scripts/tmpl.js -t product.html.ejs --array data.json -k products
-	./scripts/tmpl.js -t category.html.ejs --array data.json -k categories
+	mkdir -p dist
+	./scripts/tmpl.js -d dist -t templates/index.html.ejs --object data.json
+	./scripts/tmpl.js -d dist -t templates/product.html.ejs --array data.json -k products
+	./scripts/tmpl.js -d dist -t templates/category.html.ejs --array data.json -k categories

@@ -18,8 +18,15 @@ const help = ()=>{
 
 const t = args.t;
 const obj = args.object;
+const dir = args.d || process.cwd();
 const arr = args.array;
 const arrKey = args.k;
+
+const write = (filename, content) => {
+  let pathname = path.join(dir, filename);
+  console.log('writing', pathname);
+  fs.writeFileSync(pathname, content);
+}
 
 
 if (!t) help();
@@ -29,10 +36,10 @@ if ( obj )
 {
   const data = JSON.parse(fs.readFileSync(obj));
   const src = fs.readFileSync(t).toString();
-  const name = grabUntil(t, '.'); // grab [name].html.ejs
+  const name = grabUntil(path.basename(t), '.'); // grab [name].html.ejs
   let filename = `${name}.html`;
   let content = ejs.render(src, data);
-  fs.writeFileSync(filename, content);
+  write(filename, content);
   process.exit(0);
 }
 else if ( arr && arrKey )
@@ -40,13 +47,13 @@ else if ( arr && arrKey )
   const data = JSON.parse(fs.readFileSync(arr))
   const iterable = data[arrKey];
   const src = fs.readFileSync(t).toString();
-  const name = grabUntil(t, '.'); // grab [name].html.ejs
+  const name = grabUntil(path.basename(t), '.'); // grab [name].html.ejs
 
   const generate = (key, item) => {
     let filename = `${name}-${key}.html`;
     let itemData = Object.assign({ key }, data, item);
     let content = ejs.render(src, itemData);
-    fs.writeFileSync(filename, content);
+    write(filename, content);
   }
 
   if ( Array.isArray( iterable ) ) {
