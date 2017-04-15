@@ -1,0 +1,12 @@
+{
+  "products": [
+    {
+      "name": "shoes",
+      "price": 20099
+    },
+    {
+      "name": "harness",
+      "price": 8099
+    }
+  ]
+}
