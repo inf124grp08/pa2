@@ -7,6 +7,6 @@ clean:
 
 build:
 	mkdir -p dist
-	./scripts/tmpl.js -d dist -t templates/index.html.ejs --object data.json
-	./scripts/tmpl.js -d dist -t templates/product.html.ejs --array data.json -k products
-	./scripts/tmpl.js -d dist -t templates/category.html.ejs --array data.json -k categories
+	./scripts/tmpl.js -d dist -s data.json -m obj -t tmpl/index.html.ejs
+	./scripts/tmpl.js -d dist -s data.json -m col -t tmpl/product.html.ejs -k products
+	./scripts/tmpl.js -d dist -s data.json -m col -t tmpl/category.html.ejs -k categories

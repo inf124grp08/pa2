@@ -7,20 +7,28 @@ const grabUntil = (s,d) => s.slice(0, s.indexOf(d));
 
 const help = ()=>{
   process.stdout.write(`
-  Usage: tmpl.js -t [ejs] [-k key] MODE
+  Usage: tmpl.js [-d dir] -t path/to/NAME.ejs -s path/to/data.json -m MODE [-k KEY]
   where MODE is one of:
-    --object file.json
-    --array file.json
-      this requires a key passed in with -k, the index of the array value to iterate upon
+    obj
+      data is passed in directly as the parameters to the template renderer
+      generates NAME.html
+
+    col
+      the data in the array or object at KEY is iterated over for generation
+      generates NAME-i.html if iterating over an array where i is an index
+      generates NAME-x.html if iterating over an object where x is a key
   \n`);
   process.exit(0);
 }
 
-const t = args.t;
-const obj = args.object;
 const dir = args.d || process.cwd();
-const arr = args.array;
-const arrKey = args.k;
+const mode = args.m;
+const dataFile = args.s;
+const tmplFile = args.t;
+
+if (!tmplFile) help();
+
+const collectionKey = args.k;
 
 const write = (filename, content) => {
   let pathname = path.join(dir, filename);
@@ -28,26 +36,21 @@ const write = (filename, content) => {
   fs.writeFileSync(pathname, content);
 }
 
+const name = grabUntil(path.basename(tmplFile), '.'); // grab [name].html.ejs
 
-if (!t) help();
-if (obj && arr) help();
-
-if ( obj )
+if ( mode === 'obj' )
 {
-  const data = JSON.parse(fs.readFileSync(obj));
-  const src = fs.readFileSync(t).toString();
-  const name = grabUntil(path.basename(t), '.'); // grab [name].html.ejs
+  const data = JSON.parse(fs.readFileSync(dataFile));
+  const src = fs.readFileSync(tmplFile).toString();
   let filename = `${name}.html`;
   let content = ejs.render(src, data);
   write(filename, content);
   process.exit(0);
 }
-else if ( arr && arrKey )
+else if ( mode === 'col' )
 {
-  const data = JSON.parse(fs.readFileSync(arr))
-  const iterable = data[arrKey];
-  const src = fs.readFileSync(t).toString();
-  const name = grabUntil(path.basename(t), '.'); // grab [name].html.ejs
+  const data = JSON.parse(fs.readFileSync(dataFile))
+  const src = fs.readFileSync(tmplFile).toString();
 
   const generate = (key, item) => {
     let filename = `${name}-${key}.html`;
@@ -55,6 +58,8 @@ else if ( arr && arrKey )
     let content = ejs.render(src, itemData);
     write(filename, content);
   }
+
+  const iterable = collectionKey ? data[collectionKey] : data;
 
   if ( Array.isArray( iterable ) ) {
     iterable.forEach((item, key) => generate(key, item))
