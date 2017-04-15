@@ -37,14 +37,27 @@ if ( obj )
 }
 else if ( arr && arrKey )
 {
-  const data = JSON.parse(fs.readFileSync(arr))[arrKey];
+  const data = JSON.parse(fs.readFileSync(arr))
+  const iterable = data[arrKey];
   const src = fs.readFileSync(t).toString();
   const name = grabUntil(t, '.'); // grab [name].html.ejs
-  data.forEach((item, key) => {
+
+  const generate = (key, item) => {
     let filename = `${name}-${key}.html`;
-    let content = ejs.render(src, item);
+    let itemData = Object.assign({ key }, data, item);
+    let content = ejs.render(src, itemData);
     fs.writeFileSync(filename, content);
-  })
+  }
+
+  if ( Array.isArray( iterable ) ) {
+    iterable.forEach((item, key) => generate(key, item))
+  } else {
+    Object.keys(iterable).forEach((key) => {
+      let item = iterable[key];
+      generate(key, item);
+    })
+  }
+
   process.exit(0);
 } else {
   help();

@@ -1,12 +1,117 @@
 {
+  "categories": {
+    "shoes":
+    {
+      "label" : "Climbing Shoes",
+        "description": "A climbing shoe is a specialized type of footwear designed for rock climbing. Typical climbing shoes have a close fit, little if any padding, and a smooth, sticky rubber sole with an extended rubber rand. Unsuited to walking and hiking, climbing shoes are typically donned at the base of a climb",
+        "image" : "https://i.ytimg.com/vi/E2DoeyP1vvM/maxresdefault.jpg"
+    },
+      "harnesses":
+    {
+      "label" : "Climbing Harnesses",
+        "description" : "A harness is a system used for connecting the rope to the climber. There are two           loops at the front of the harness where the climber ties into the rope at the working end using           a figure-eight knot. Most harnesses used in climbing are preconstructed and are worn around the           pelvis and hips, although other types are used occasionally. Usually young children use a full            body harness because it gives more support for the body.",
+        "image" : "https://cdn.outdoorgearlab.com/photos/12/70/248557_4669_XL.jpg"
+    },
+      "ropes" :
+    {
+      "label" : "Climbing Ropes",
+        "description" : "Climbing ropes are typically of kernmantle construction, consisting of a core (kern) of long twisted fibres and an outer sheath (mantle) of woven coloured fibres. The core provides about 80% of the tensile strength, while the sheath is a durable layer that protects the core and gives the rope desirable handling characteristics.",
+        "image" : "https://climbcore.files.wordpress.com/2016/05/http-coresites-cdn-factorymedia-com-mpora_new-wp-content-uploads-2016-02-climbing-rope-photo-istockphoto-com.jpg"
+    },
+      "hardware" :
+    {
+      "label" : "Climbing Hardware",
+        "description" : "A wide range of equipment is used during rock or any other type of climbing.",
+        "image" : "https://www.mammut.ch/images/c/Online/Website/Categories/kletterausruestung_rgb_1800x900.jpg"
+    }
+  },
   "products": [
     {
-      "name": "shoes",
-      "price": 20099
+      "category": "shoes",
+      "image": "https://www.rei.com/media/product/830932?size=230",
+      "price": 80,
+      "brand": "La Sportiva",
+      "description": "Tarantulace Climbing Shoes"
     },
     {
-      "name": "harness",
-      "price": 8099
+      "category": "shoes",
+      "image": "https://www.rei.com/media/product/694900?size=230",
+      "price": 145,
+      "brand": "La Sportiva",
+      "description": "Mythos Climbing Shoes - Women's"
+    },
+    {
+      "category": "shoes",
+      "image": "https://www.rei.com/media/product/475014?size=230",
+      "price": 99,
+      "brand": "La Sportiva",
+      "description": "Finale Climbing Shoes - Men's"
+    },
+
+    {
+      "category": "harnesses",
+      "image": "https://www.rei.com/media/product/880937?size=230",
+      "price": 54.95,
+      "brand": "Black Diamond",
+      "description": "Primrose Climbing Harness - Women's"
+    },
+    {
+      "category": "harnesses",
+      "image": "https://www.rei.com/media/product/868199?size=230",
+      "price": 124.95,
+      "brand": "Black Diamond",
+      "description": "Chaos Climbing Harness - Men's"
+    },
+    {
+      "category": "harnesses",
+      "image": "https://www.rei.com/media/product/880864?size=230",
+      "price": 159,
+      "brand": "Arc'teryx",
+      "description": "AR-395a Climbing Harness - Men's"
+    },
+
+    {
+      "category": "ropes",
+      "image": "https://www.rei.com/media/product/100524?size=230",
+      "price": 149.95,
+      "brand": "Edelrid",
+      "description": "Boa Eco 9.8mm Non-Dry Rope"
+    },
+    {
+      "category": "ropes",
+      "image": "https://www.rei.com/media/product/871095?size=230",
+      "price": 259.95,
+      "brand": "Petzi",
+      "description": "Arial 9.5mm x 70m Dry Rope"
+    },
+    {
+      "category": "ropes",
+      "image": "https://www.rei.com/media/product/897869?size=230",
+      "price": 229.95,
+      "brand": "Mammut",
+      "description": "Infinity Protect 9.5mm x 70m Single Rope"
+    },
+
+    {
+      "category": "hardware",
+      "image": "https://www.rei.com/media/product/809263?size=230",
+      "price": 99.95,
+      "brand": "Petzi",
+      "description": "GRIGRI 2 Belay Device"
+    },
+    {
+      "category": "hardware",
+      "image": "https://www.rei.com/media/product/899069?size=230",
+      "price": 31.95,
+      "brand": "Black Diamond",
+      "description": "Positron Screwgate Locking Carabiner - Package of 3"
+    },
+    {
+      "category": "hardware",
+      "image": "https://www.rei.com/media/product/899092?size=230",
+      "price": 79.95,
+      "brand": "Black Diamond",
+      "description": "FreeWire Quickdraw Quickpack - 12cm"
     }
   ]
 }

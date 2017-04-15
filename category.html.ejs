@@ -1,0 +1,9 @@
+Category label <% label %>
+Category description <% description %>
+
+products...
+<% products.filter(i=>i.category === key).forEach(product => { %>
+  Product name: <%= product.brand %>
+  Product name: <%= product.description %>
+  Product price: <%= product.price %>
+<% }); %>
