@@ -1,5 +1,22 @@
 # pa1
 
+URL: andromeda-16.ics.uci.edu:5016/pa1
+
+General layout: Organized by category. Clicking category takes you to product listing for that cateogry. clicking the product itself takes you to the product detail page, which has the order form.
+
+Requirements are satisfied throughout the website. See the product page for the order form. See the category page for the products listing.
+
+Group memebrs:
+Keyvan Fatehi
+Kyle San Clemente
+
+The file to execute is the `dist/index.html` file. The rest of the files are used to generate some of the repetitive content.
+
+Lastly, the github for this assignment is here: https://github.com/inf124grp08/pa1
+
+Keep in mind that due to the nature of the openlab group system, we have been pushing often from an unnamed user, so do not rely on git commits to show who has done what. We have done all of the work together (Kyle and I).
+
+
 [Assignment details](https://canvas.eee.uci.edu/courses/4693/assignments/95642)
 
 ## Requirements
