@@ -1,4 +1,4 @@
-<form action="mailto:kfatehi@uci.edu" method="GET" enctype="multipart/form-data" onsubmit="return validate()">
+<form id="form-order-form" action="mailto:kfatehi@uci.edu" method="GET" enctype="multipart/form-data">
   <input name="subject" type="text" value="ORDER" class="hidden"/>
   <h4> Product ID: </h4>
   <input name="product-id" type="number" value="<%= key %>" required/>
@@ -14,6 +14,7 @@
   <textarea name="address" cols="30" rows="4">
   </textarea>
   <h4>Shipping Method: </h4>
+  <label>
   <input name="shipping" type="radio" value="overnight" required/><span>overnight</span><br>
   <input name="shipping" type="radio" value="2-days expedited"/><span>2-days expedited</span><br>
   <input name="shipping" type="radio" value="6-days ground"/><span>6-days ground</span><br>
@@ -34,4 +35,3 @@
   <input type="submit" value="order" />
 </form>
 <script src="js/mail-order-form.js"></script>
-<script src="js/validate.js"></script>
