@@ -1,7 +1,6 @@
 function validate() {
   var form = $('form');
   var data = form.serializeArray();
-  console.log(data);
   var productID = data[1].value;
   var quantity = data[2].value;
   var firstname = data[3].value;
@@ -12,7 +11,7 @@ function validate() {
     return false;
   }
   var address = data[6].value;
-  var validAddress = new RegExp('\\s*\\d{1,10}\\s.{3,30}[\\n\\r]\\s*.+?(AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY)(\\s|,\\s)(\\d{5}|\\d{5}[-\\s]\\d{4})\\s*$');
+  var validAddress = new RegExp('\\s*\\d{1,10}\\s.{3,30}[\\n\\r]\\s*[\\s\\S]+?(AL|AK|AS|AZ|AR|CA|CO|CT|DE|DC|FM|FL|GA|GU|HI|ID|IL|IN|IA|KS|KY|LA|ME|MH|MD|MA|MI|MN|MS|MO|MT|NE|NV|NH|NJ|NM|NY|NC|ND|MP|OH|OK|OR|PW|PA|PR|RI|SC|SD|TN|TX|UT|VT|VI|VA|WA|WV|WI|WY)(\\s|,\\s)(\\d{5}|\\d{5}[-\\s]\\d{4})\\s*$');
   if(!validAddress.test(address)){
     alert("invalid shipping address!");
     return false;
