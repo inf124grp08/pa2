@@ -2,13 +2,23 @@
 <html>
   <% include head.html.ejs %>
 	<body>
-    <% this.catKey = category %>
-    <% this.cat = categories[this.catKey]; %>
-    <% include navbar.html.ejs %>
-    <img style="max-width: 200px;" class="product-image" src="<%= image %>"/>
-    <p class="brand"><%= brand %></p>
-    <p class="description"><%= description %></p>
-    <p class="price"><%= price %></p>
-    <% include orderform.html.ejs %>
+    <div id="content">
+      <% include navbar.html.ejs %>
+      <% this.catKey = category %>
+      <% this.cat = categories[this.catKey]; %>
+      <h2><%= description %></h2>
+      <div id="product">
+        <div id="product-info">
+          <img class="product-image" src="<%= image %>"/>
+          <div>
+            <h3 class="brand"><strong>Brand: </strong><%= brand %></h3>
+            <h4 class="price"><strong>Price: </strong><%= price %></h4>
+          </div>
+        </div>
+        <div id="order-form">
+          <% include orderform.html.ejs %>
+        </div>
+      </div>
+    </div>
 	</body>
 </html>

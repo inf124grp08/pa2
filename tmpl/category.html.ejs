@@ -3,38 +3,40 @@
   <% this.title = "Maximum Climbing: "+label %>
   <% include head.html.ejs %>
 	<body>
-    <img style="max-width: 200px;" class="cat-image" src="<%= image %>"/>
-    <% this.catKey = key %>
-    <% include navbar.html.ejs %>
-    <table>
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Description</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-      <% products.forEach((p,i) => { %>
-        <% if (p.category !== key) return %>
-        <tr>
-          <td>
-            <a href="product-<%= i %>.html">
-              <img style="max-width: 200px;" class="product-image" src="<%= p.image %>"/>
-            </a>
-          </td>
-          <td>
-            <a href="product-<%= i %>.html">
-              <p><%= p.brand %></p>
-              <p><%= p.description %></p>
-            </a>
-          </td>
-          <td>
-            $<%= p.price %>
-          </td>
-        </tr>
-      <% }); %>
-      </tbody>
-    </table>
+    <div id="content">
+      <% include navbar.html.ejs %>
+      <h2><% this.catKey = key %></h2>
+      <img class="cat-image" src="<%= image %>"/>
+      <table id="cat-table">
+        <thead id="cat-table-labels">
+          <tr>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody id="cat-table-body">
+        <% products.forEach((p,i) => { %>
+          <% if (p.category !== key) return %>
+          <tr class="cat-table-row">
+            <td class="cat-table-image">
+              <a href="product-<%= i %>.html">
+                <img class="product-image" src="<%= p.image %>"/>
+              </a>
+            </td>
+            <td class="cat-table-description">
+              <a href="product-<%= i %>.html">
+                <p><%= p.description %></p>
+                <p><strong>brand: </strong><%= p.brand %></p>
+              </a>
+            </td>
+            <td class="cat-table-price">
+              $<%= p.price %>
+            </td>
+          </tr>
+        <% }); %>
+        </tbody>
+      </table>
+    </div>
 	</body>
 </html>
