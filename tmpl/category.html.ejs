@@ -4,9 +4,10 @@
   <% include head.html.ejs %>
 	<body>
     <div id="content">
+      <% this.catKey = key %>
       <% include navbar.html.ejs %>
-      <h2><% this.catKey = key %></h2>
       <img class="cat-image" src="<%= image %>"/>
+      <h2><%= label %></h2>
       <table id="cat-table">
         <thead id="cat-table-labels">
           <tr>
