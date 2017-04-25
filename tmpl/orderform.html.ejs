@@ -1,4 +1,4 @@
-<form action="mailto:kfatehi@uci.edu" method="GET" enctype="multipart/form-data">
+<form action="mailto:kfatehi@uci.edu" method="GET" enctype="multipart/form-data" onsubmit="return validate()">
   <input name="subject" type="text" value="ORDER" class="hidden"/>
   <h4> Product ID: </h4>
   <input name="product-id" type="number" value="<%= key %>" required/>
@@ -19,13 +19,13 @@
   <input name="shipping" type="radio" value="6-days ground"/><span>6-days ground</span><br>
   <br>
   <h4>Creditcard Number: </h4>
-  <input type="number" min="1000" max="9999" name="creditCard1" class="cc-input" required/>
+  <input type="number" min="1000" max="9999" name="creditCard1" value="1000" class="cc-input" required/>
   -
-  <input type="number" min="1000" max="9999" name="creditCard2" class="cc-input" required/>
+  <input type="number" min="1000" max="9999" name="creditCard2" value="1000" class="cc-input" required/>
   -
-  <input type="number" min="1000" max="9999" name="creditCard3" class="cc-input" required/>
+  <input type="number" min="1000" max="9999" name="creditCard3" value="1000" class="cc-input" required/>
   -
-  <input type="number" min="1000" max="9999" name="creditCard4" class="cc-input" required/>
+  <input type="number" min="1000" max="9999" name="creditCard4" value="1000" class="cc-input" required/>
   <br>
   <br>
   <h4>Expiration Date: </h4>
@@ -34,3 +34,4 @@
   <input type="submit" value="order" />
 </form>
 <script src="js/mail-order-form.js"></script>
+<script src="js/validate.js"></script>
