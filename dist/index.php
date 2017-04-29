@@ -1,31 +1,9 @@
+<? include 'db.php'; ?>
 <!DOCTYPE html>
 <html>
   <? include 'head.php'; ?>
 	<body>
     <div id="content">
-<?php 
-
-$config = json_decode(file_get_contents("../config/db.json"), true);
-
-try {
-  $db = new PDO(
-    "mysql:dbname=".$config['db'].";host=".$config['host'],
-    $config['user'], $config['password']);
-  $db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-
-  $sql = "SELECT * FROM categories;";
-
-  $cur = $db->query($sql);
-
-  $categories = $cur->fetchAll();
-
-} catch(PDOException $e) {
-  echo $e->getMessage();//Remove or change message in production code
-}
-
-$db = null;
-
-?>
       <? include 'navbar.php'; ?>
 
       <div id="title">
