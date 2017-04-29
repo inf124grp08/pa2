@@ -10,3 +10,6 @@ build:
 	./scripts/tmpl.js -d dist -s data.json -m obj -t tmpl/index.html.ejs
 	./scripts/tmpl.js -d dist -s data.json -m col -t tmpl/product.html.ejs -k products
 	./scripts/tmpl.js -d dist -s data.json -m col -t tmpl/category.html.ejs -k categories
+
+seed:
+	php -c ~/apacheRoot/conf scripts/seed.php

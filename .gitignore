@@ -3,3 +3,4 @@ dist/index.html
 dist/product-*.html
 dist/category-*.html
 yarn.lock
+config/db.json
