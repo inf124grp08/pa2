@@ -33,18 +33,7 @@ form.addEventListener('submit', (e)=>{
 
   var errors = validate();
   if ( errors.length === 0 ) {
-    var subject = 'Order From ' + firstname + ' ' + lastname;
-    var body = 'Order For: ' + firstname + ' ' + lastname + '\n' +
-      'Product ID: ' + productID + '\n' +
-      'Quantity: ' + quantity + '\n' +
-      'Phone Number: ' + phone + '\n' +
-      'Shipping Address:\n' +  firstname + ' ' +  lastname + '\n'
-      + address + '\n' +
-      'Credit Card: '  + cc1 + '-' + cc2 + '-' + cc3 + '-' + cc4 + '\n' +
-      'Expiration Date: ' + expiry + '\n';
-    var addr = form.getAttribute('action');
-    console.log(body)
-    window.open(`${addr}?subject=${subject}&body=${escape(body)}`, '_self');
+    form.submit();
   } else {
     alert(errors.join('\n'));
   }

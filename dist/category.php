@@ -1,14 +1,14 @@
 <? include 'db.php'; ?>
 <!DOCTYPE html>
 <html>
-  <? $title = "Maximum Climbing: $label" ?>
+  <? $title = "Maximum Climbing: ".$category['label'] ?>
   <? include 'head.php'; ?>
 	<body>
     <div id="content">
       <? include 'navbar.php'; ?>
-      <img class="cat-image" src="<?= $image ?>"/>
-      <h2><?= $label ?></h2>
-      <p><?= $desc ?></p>
+      <h2><?= $category['label'] ?></h2>
+      <img class="cat-image" src="<?= $category['image'] ?>"/>
+      <p><?= $category['description'] ?></p>
       <table id="cat-table">
         <thead id="cat-table-labels">
           <tr>

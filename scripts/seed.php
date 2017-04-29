@@ -51,6 +51,24 @@ try {
     $db->exec($sql);
   }
 
+  $table="orders";
+  $db->exec("DROP TABLE IF EXISTS $table;");
+  print("Dropped table $table if it existed.\n");
+  $sql ="CREATE TABLE IF NOT EXISTS $table(
+    id INT( 11 ) AUTO_INCREMENT PRIMARY KEY,
+    product_id INT( 11 ) NOT NULL,
+    quantity INT(11) NOT NULL, 
+    firstname VARCHAR( 255 ) NOT NULL,
+    lastname VARCHAR( 255 ) NOT NULL,
+    phone VARCHAR( 255 ) NOT NULL,
+    address TEXT NOT NULL,
+    shipping VARCHAR(50) NOT NULL,
+    creditcard VARCHAR(255) NOT NULL,
+    expiry VARCHAR(50) NOT NULL);";
+  $db->exec($sql);
+  print("Created table $table.\n");
+
+
 } catch(PDOException $e) {
   echo $e->getMessage();//Remove or change message in production code
 }
