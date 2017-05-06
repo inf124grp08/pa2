@@ -12,7 +12,7 @@
           <img class="product-image" src="<?= $product['image'] ?>"/>
           <div>
             <h3 class="brand"><strong>Brand: </strong><?= $product['brand'] ?></h3>
-            <h4 class="price"><strong>Price: </strong><?= $product['price'] ?></h4>
+            <h4 class="price"><strong>Price: </strong><span id="price"><?= $product['price'] ?></span></h4>
           </div>
         </div>
         <div id="order-form">
@@ -21,7 +21,7 @@
             <h4> Product ID: </h4>
             <input name="product-id" type="number" value="<?= $product['id'] ?>" required/>
             <h4> Quantity: </h4>
-            <input name="quantity" type="number" value="1" required/>
+            <input name="quantity" type="number" value="1" id="qty" required/>
             <h4> First Name: </h4>
             <input name="firstname" type="text" value="first" required/>
             <h4> Last Name: </h4>
@@ -30,9 +30,9 @@
             <input name="phone-number" type="tel" value="9498675309" required/>
             <h4>Shipping Address: </h4>
             <input placeholder="street address" name="street" value="123 fake street" required/>
-            <input placeholder="city" name="city"  required/>
-            <input placeholder="state" name="state" required/>
             <input placeholder="zip code" name="zip" id="zip" required/>
+            <input placeholder="city" name="city" id="city" required/>
+            <input placeholder="state" name="state" id="state" required/>
             <h4>Shipping Method: </h4>
             <label>
             <input name="shipping" type="radio" value="overnight" required/><span>overnight</span><br>
@@ -53,8 +53,8 @@
             <h4>Expiration Date: </h4>
             <input class="inputCard" name="expiry" id="expiry" type="month" value="2018-01"  required/>
             <br>
-            <h4>Subtotal: $<span id="price"><?= $product['price'] ?></span></h4>
-            <h4>Tax: $<span id="tax">0.00</span></h4>
+            <h4>Subtotal: $<span id="subtotal"><?= $product['price'] ?></span></h4>
+            <h4>Tax: %<span id="tax">0.00</span></h4>
             <h4>Total: $<span id="total"><?= $product['price'] ?></span></h4>
             <input type="submit" value="order" />
           </form>

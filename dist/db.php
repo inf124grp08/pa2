@@ -91,6 +91,13 @@ try {
       $order = $stmt->execute($values);
       $id = $db->lastInsertId();
     }
+  } else if ($page == "get-place.php") {
+    if (isset($_GET["zip"]) ) {
+      $sql = "SELECT * FROM places WHERE zip = :zip";
+      $stmt = $db->prepare($sql);
+      $stmt->execute(array(':zip' => $_GET['zip']));
+      $place = $stmt->fetch();
+    }
   }
 
 } catch(PDOException $e) {

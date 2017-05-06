@@ -5,26 +5,50 @@ var validatorsReq = new XMLHttpRequest();
 validatorsReq.addEventListener('load', function() {
   var validators = JSON.parse(this.responseText);
 
+  var taxEl = document.getElementById('tax');
+  var qtyEl = document.getElementById('qty');
+  var subtotalEl = document.getElementById('subtotal');
+  var priceEl = document.getElementById('price');
+  var totalEl = document.getElementById('total');
+
+  function updateTotal() {
+    var tax = parseFloat(taxEl.innerText);
+    var qty = parseInt(qtyEl.value);
+    var price = parseInt(priceEl.innerText);
+    var subtotal = qty * price;
+    var total = (subtotal * tax) + subtotal;
+    subtotalEl.innerText = subtotal;
+    totalEl.innerText = total;
+  }
+
+  // qty autoupdate
+  qtyEl.addEventListener('change', function() {
+    updateTotal();
+  });
+
   // zip autofill
   var zipInput = document.getElementById("zip");
   var vZip = validators.find(i=>i.name==="zip");
   var vZipRegex = new RegExp(vZip.regex);
   zipInput.addEventListener('keyup', function() {
     if (vZipRegex.test(zipInput.value)) {
-      console.log('valid');
       var getPlaceXHR = new XMLHttpRequest();
       getPlaceXHR.addEventListener('load', function() {
         var place = JSON.parse(this.responseText);
-        console.log('!!!', place);
-        //place.taxrate;
-        //place.city;
-        //place.state;
+        var taxEl = document.getElementById('tax');
+        if ( place ) {
+          document.getElementById('state').value = place.state;
+          document.getElementById('city').value = place.city;
+          taxEl.innerText = place.taxrate;
+        } else {
+          taxEl.innerText = 0;
+        }
+        updateTotal();
       });
       getPlaceXHR.open('GET', `get-place.php?zip=${zipInput.value}`);
       getPlaceXHR.send();
     }
   });
-
 
   // submission 
   form.addEventListener('submit', (e)=>{
