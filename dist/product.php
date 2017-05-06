@@ -23,13 +23,13 @@
             <h4> Quantity: </h4>
             <input name="quantity" type="number" value="1" id="qty" required/>
             <h4> First Name: </h4>
-            <input name="firstname" type="text" value="first" required/>
+            <input name="firstname" type="text" required/>
             <h4> Last Name: </h4>
-            <input name="lastname" type="text" value="second" required/>
+            <input name="lastname" type="text" required/>
             <h4> Phone Number: </h4>
-            <input name="phone-number" type="tel" value="9498675309" required/>
+            <input name="phone-number" type="tel" required/>
             <h4>Shipping Address: </h4>
-            <input placeholder="street address" name="street" value="123 fake street" required/>
+            <input placeholder="street address" name="street" required/>
             <input placeholder="zip code" name="zip" id="zip" required/>
             <input placeholder="city" name="city" id="city" required/>
             <input placeholder="state" name="state" id="state" required/>
@@ -40,13 +40,13 @@
             <br>
             <h4>Creditcard Number: <img id="cc-logo" style="height: 35px;" /> </h4>
             <input type="hidden" name="cc"/>
-            <input type="number" min="0" max="9999" name="creditCard1" value="1000" id="cc1" class="cc-input" required/>
+            <input type="number" min="0" max="9999" name="creditCard1" id="cc1" class="cc-input" required/>
             -
-            <input type="number" min="0" max="9999" name="creditCard2" value="1000" class="cc-input" required/>
+            <input type="number" min="0" max="9999" name="creditCard2" class="cc-input" required/>
             -
-            <input type="number" min="0" max="9999" name="creditCard3" value="1000" class="cc-input" required/>
+            <input type="number" min="0" max="9999" name="creditCard3" class="cc-input" required/>
             -
-            <input type="number" min="0" max="9999" name="creditCard4" value="1000" class="cc-input" required/>
+            <input type="number" min="0" max="9999" name="creditCard4" class="cc-input" required/>
             
             <br>
             <br>
