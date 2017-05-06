@@ -5,13 +5,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var images = document.getElementsByClassName('product-image');
 
   Array.from(images).forEach(img => {
-    var cstyle = window.getComputedStyle(img);
+    let originalHeight;
+
     img.addEventListener('mouseenter', ()=>{
-      img.style.height = `${parseInt(cstyle.height)*1.2}px`;
+      originalHeight = window.getComputedStyle(img).height;
+      img.style.height = `${parseInt(originalHeight)*1.2}px`;
     });
 
     img.addEventListener('mouseout', ()=>{
-      img.style.height = cstyle.height;
+      img.style.height = originalHeight;
     });
   });
 });
