@@ -81,6 +81,8 @@ try {
   $db->exec($sql);
   print("Created table $table.\n");
 
+  $places = array();
+
   $csv = array_map('str_getcsv', file("zip_codes.csv"));
   array_walk($csv, function(&$a) use ($csv) {
     $a = array_combine($csv[0], $a);
@@ -91,8 +93,10 @@ try {
     $zip = $item['zip'];
     $city = $item['city'];
     $state = $item['state'];
-    $sql = "INSERT INTO $table (zip, city, state) VALUES ('$zip', '$city', '$state');";
-    $db->exec($sql);
+    $places[$zip] = array(
+      'city' => $city,
+      'state' => $state,
+    );
   }
 
   // and the tax rates
@@ -105,8 +109,16 @@ try {
 
   foreach ($csv as $item) {
     $zip = $item['ZipCode'];
-    $taxrate = $item['CombinedRate'];
-    $sql = "UPDATE $table SET taxrate = '$taxrate' WHERE zip = $zip;";
+    if (array_key_exists($zip, $places)) {
+      $places[$zip]['taxrate'] = $item['CombinedRate'];
+    }
+  }
+
+  foreach ($places as $zip => $place) {
+    $city = $place['city'];
+    $state = $place['state'];
+    $taxrate = $place['taxrate'];
+    $sql = "INSERT INTO $table (zip, city, state, taxrate) VALUES ('$zip', '$city', '$state', '$taxrate');";
     $db->exec($sql);
   }
 
