@@ -29,10 +29,10 @@
             <h4> Phone Number: </h4>
             <input name="phone-number" type="tel" value="9498675309" required/>
             <h4>Shipping Address: </h4>
-            <input name="street" value="123 fake street" required/>
-            <input name="city"  required/>
-            <input name="state" required/>
-            <input name="zip" required/>
+            <input placeholder="street address" name="street" value="123 fake street" required/>
+            <input placeholder="city" name="city"  required/>
+            <input placeholder="state" name="state" required/>
+            <input placeholder="zip code" name="zip" id="zip" required/>
             <h4>Shipping Method: </h4>
             <label>
             <input name="shipping" type="radio" value="overnight" required/><span>overnight</span><br>
@@ -53,7 +53,7 @@
             <h4>Expiration Date: </h4>
             <input class="inputCard" name="expiry" id="expiry" type="month" value="2018-01"  required/>
             <br>
-            <h4>Price: $<span id="price"><?= $product['price'] ?></span></h4>
+            <h4>Subtotal: $<span id="price"><?= $product['price'] ?></span></h4>
             <h4>Tax: $<span id="tax">0.00</span></h4>
             <h4>Total: $<span id="total"><?= $product['price'] ?></span></h4>
             <input type="submit" value="order" />

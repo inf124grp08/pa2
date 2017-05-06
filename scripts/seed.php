@@ -1,6 +1,7 @@
 <?php
 $config = json_decode(file_get_contents("config/db.json"), true);
 $data = json_decode(file_get_contents("data.json"), true);
+
 try {
   $db = new PDO(
     "mysql:dbname=".$config['db'].";host=".$config['host'],
@@ -68,6 +69,46 @@ try {
   $db->exec($sql);
   print("Created table $table.\n");
 
+  // bring in the zip codes 
+  $table="places";
+  $db->exec("DROP TABLE IF EXISTS $table;");
+  print("Dropped table $table if it existed.\n");
+  $sql ="CREATE TABLE IF NOT EXISTS $table(
+    zip VARCHAR(50) PRIMARY KEY,
+    city VARCHAR(50) NOT NULL,
+    state VARCHAR(50) NOT NULL,
+    taxrate numeric(15,2) NOT NULL DEFAULT '0');";
+  $db->exec($sql);
+  print("Created table $table.\n");
+
+  $csv = array_map('str_getcsv', file("zip_codes.csv"));
+  array_walk($csv, function(&$a) use ($csv) {
+    $a = array_combine($csv[0], $a);
+  });
+  array_shift($csv);
+
+  foreach ($csv as $item) {
+    $zip = $item['zip'];
+    $city = $item['city'];
+    $state = $item['state'];
+    $sql = "INSERT INTO $table (zip, city, state) VALUES ('$zip', '$city', '$state');";
+    $db->exec($sql);
+  }
+
+  // and the tax rates
+  
+  $csv = array_map('str_getcsv', file("tax_rates2.csv"));
+  array_walk($csv, function(&$a) use ($csv) {
+    $a = array_combine($csv[0], $a);
+  });
+  array_shift($csv);
+
+  foreach ($csv as $item) {
+    $zip = $item['ZipCode'];
+    $taxrate = $item['CombinedRate'];
+    $sql = "UPDATE $table SET taxrate = '$taxrate' WHERE zip = $zip;";
+    $db->exec($sql);
+  }
 
 } catch(PDOException $e) {
   echo $e->getMessage();//Remove or change message in production code

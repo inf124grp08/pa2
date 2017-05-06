@@ -16,7 +16,11 @@ Now that you are setup, your third task is to use PHP and MySQL to enhance the e
 2. [x] When the user submits a form to order a product, instead of sending an email from the client-side, as you did in first assignment, the request should be sent to a server-side PHP script that stores that information in a database table. The form should be validated to prevent insertion of bad data in your database. 
   - [x] Server side validation.
 3. [x] After successfully storing the order information in a database table, a dynamically generated confirmation page should to be displayed to the user with the details of the order. 
-4. [] Use Ajax to make your website dynamic and interactive. Among others, you could use Ajax to assist the user with filling the order forms, e.g., when the user chooses a particular state for delivery, obtain the corresponding tax rate from the backend database to update the total price for the product dynamically, or as another example, provide auto complete capability, such as suggesting states as the user types the name of a state. You can use these files to help with this task: zip codesPreview the documentView in a new window and tax ratesPreview the documentView in a new window. You have freedom in identifying other opportunities for using Ajax in making your website dynamic and interactive. At the very least, your website should make use of Ajax for two non-trivial features that the grader can verify. 
+4. [] when the user chooses a particular state for delivery, obtain the corresponding tax rate from the backend database to update the total price for the product dynamically
+   or as another example, provide auto complete capability, such as suggesting states as the user types the name of a state.
+You can use these files to help with this task: zip code
+tax rates
+View in a new window. You have freedom in identifying other opportunities for using Ajax in making your website dynamic and interactive. At the very least, your website should make use of Ajax for two non-trivial features that the grader can verify. 
 
 Important: Make sure you are not creating too many database connections and properly closing your database connections when finished with them. You only need one database connection for your entire website that can be shared across different program elements. The database installation has a limited number of connection threads. If you create too many connections and fail to close them, the database will run out of connection threads. 
 

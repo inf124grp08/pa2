@@ -1,9 +1,32 @@
 var form = document.getElementById('form-order-form');
 
-var req = new XMLHttpRequest();
-req.addEventListener('load', function() {
+
+var validatorsReq = new XMLHttpRequest();
+validatorsReq.addEventListener('load', function() {
   var validators = JSON.parse(this.responseText);
 
+  // zip autofill
+  var zipInput = document.getElementById("zip");
+  var vZip = validators.find(i=>i.name==="zip");
+  var vZipRegex = new RegExp(vZip.regex);
+  zipInput.addEventListener('keyup', function() {
+    if (vZipRegex.test(zipInput.value)) {
+      console.log('valid');
+      var getPlaceXHR = new XMLHttpRequest();
+      getPlaceXHR.addEventListener('load', function() {
+        var place = JSON.parse(this.responseText);
+        console.log('!!!', place);
+        //place.taxrate;
+        //place.city;
+        //place.state;
+      });
+      getPlaceXHR.open('GET', `get-place.php?zip=${zipInput.value}`);
+      getPlaceXHR.send();
+    }
+  });
+
+
+  // submission 
   form.addEventListener('submit', (e)=>{
     e.preventDefault();
     var data = new FormData(form);
@@ -32,6 +55,6 @@ req.addEventListener('load', function() {
     }
   });
 });
-req.open('GET', 'validators.json');
-req.send();
+validatorsReq.open('GET', 'validators.json');
+validatorsReq.send();
 
