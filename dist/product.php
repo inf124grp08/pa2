@@ -34,20 +34,20 @@
             <input placeholder="city" name="city" id="city" required/>
             <input placeholder="state" name="state" id="state" required/>
             <h4>Shipping Method: </h4>
-            <label>
             <input name="shipping" type="radio" value="overnight" required/><span>overnight</span><br>
             <input name="shipping" type="radio" value="2-days expedited"/><span>2-days expedited</span><br>
             <input name="shipping" type="radio" checked value="6-days ground"/><span>6-days ground</span><br>
             <br>
-            <h4>Creditcard Number: </h4>
+            <h4>Creditcard Number: <img id="cc-logo" style="height: 35px;" /> </h4>
             <input type="hidden" name="cc"/>
-            <input type="number" min="0" max="9999" name="creditCard1" value="1000" class="cc-input" required/>
+            <input type="number" min="0" max="9999" name="creditCard1" value="1000" id="cc1" class="cc-input" required/>
             -
             <input type="number" min="0" max="9999" name="creditCard2" value="1000" class="cc-input" required/>
             -
             <input type="number" min="0" max="9999" name="creditCard3" value="1000" class="cc-input" required/>
             -
             <input type="number" min="0" max="9999" name="creditCard4" value="1000" class="cc-input" required/>
+            
             <br>
             <br>
             <h4>Expiration Date: </h4>

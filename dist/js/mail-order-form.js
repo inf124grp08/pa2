@@ -50,6 +50,18 @@ validatorsReq.addEventListener('load', function() {
     }
   });
 
+  // cc logo
+  var ccLogo = document.getElementById("cc-logo");
+  var cc1 = document.getElementById("cc1");
+  cc1.addEventListener('keyup', function() {
+    var getLogoXHR = new XMLHttpRequest();
+    getLogoXHR.addEventListener('load', function() {
+      ccLogo.src = this.responseText;
+    });
+    getLogoXHR.open('GET', `get-card.php?creditCard1=${cc1.value}`);
+    getLogoXHR.send();
+  });
+
   // submission 
   form.addEventListener('submit', (e)=>{
     e.preventDefault();
