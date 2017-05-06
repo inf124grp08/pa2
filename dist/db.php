@@ -1,6 +1,7 @@
 <?php 
 
 $config = json_decode(file_get_contents("../config/db.json"), true);
+$validators = json_decode(file_get_contents("./validators.json"), true);
 $page = basename($_SERVER['PHP_SELF']);
 
 try {
@@ -33,34 +34,63 @@ try {
       $product = $stmt->fetch();
     }
   } else if ($page == "order.php") {
-    $values = array(
-      ':product_id' => $_POST['product-id'],
-      ':quantity' => $_POST['quantity'],
-      ':firstname' => $_POST['firstname'],
-      ':lastname' => $_POST['lastname'],
-      ':phone' => $_POST['phone-number'],
-      ':address' => $_POST['address'],
-      ':shipping' => $_POST['shipping'],
-      ':creditcard' => $_POST['creditCard1']."-".$_POST['creditCard2']."-".$_POST['creditCard3']."-".$_POST['creditCard4'],
-      ':expiry' => $_POST['expiry']
-    );
 
-    // XXX server side validation of the values
+    $errors = array();
 
-    $sql = "INSERT INTO orders (
-      product_id,
-      quantity,
-      firstname,
-      lastname,
-      phone,
-      address,
-      shipping,
-      creditcard,
-      expiry
-    ) VALUES (:product_id, :quantity, :firstname, :lastname, :phone, :address, :shipping, :creditcard, :expiry);";
+    foreach($validators as $item) {
+      $name = $item['name'];
+      $regex = $item['regex'];
+      $value = $_POST[$name];
+      $result = preg_match("/$regex/", $value);
+      if (!$result) {
+        if (array_key_exists('message', $item)) {
+          array_push($errors, $item[$message]);
+        } else {
+          array_push($errors, "$name is not valid");
+        }
+      }
+    }
+
+    if (count($errors) == 0) {
+      $values = array(
+        ':product_id' => $_POST['product-id'],
+        ':quantity' => $_POST['quantity'],
+        ':firstname' => $_POST['firstname'],
+        ':lastname' => $_POST['lastname'],
+        ':phone' => $_POST['phone-number'],
+        ':address' => join('\n', array(
+          $_POST['street'],
+          join(', ', array(
+            $_POST['city'],
+            $_POST['state'],
+            $_POST['zip']
+          ))
+        )),
+        ':shipping' => $_POST['shipping'],
+        ':creditcard' => join('-', array(
+          $_POST['creditCard1'],
+          $_POST['creditCard2'],
+          $_POST['creditCard3'],
+          $_POST['creditCard4']
+        )),
+        ':expiry' => $_POST['expiry']
+      );
+
+      $sql = "INSERT INTO orders (
+        product_id,
+        quantity,
+        firstname,
+        lastname,
+        phone,
+        address,
+        shipping,
+        creditcard,
+        expiry
+      ) VALUES (:product_id, :quantity, :firstname, :lastname, :phone, :address, :shipping, :creditcard, :expiry);";
       $stmt = $db->prepare($sql);
       $order = $stmt->execute($values);
       $id = $db->lastInsertId();
+    }
   }
 
 } catch(PDOException $e) {
